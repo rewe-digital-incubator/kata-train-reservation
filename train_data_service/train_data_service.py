@@ -32,18 +32,26 @@ The service has one additional method, that will remove all reservations on a pa
     http://localhost:8081/reset/express_2000
 """
 import json
+import cherrypy
 
 class TrainDataService(object):
     
     def __init__(self, json_data):
         self.trains = json.loads(json_data)
-    
+
+    @cherrypy.tools.json_out()    
     def data_for_train(self, train_id):
-        return json.dumps(self.trains.get(train_id))
+        return self.trains.get(train_id)
     
-    def reserve(self, train_id, seats, booking_reference):
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def reserve(self):
+        reservation = cherrypy.request.json
+        train_id = reservation['train_id']
+        seats = reservation['seats']
+        booking_reference = reservation['booking_reference']
+
         train = self.trains.get(train_id)
-        seats = json.loads(seats)
         for seat in seats:
             if not seat in train["seats"]:
                 return "seat not found {0}".format(seat)
@@ -54,6 +62,7 @@ class TrainDataService(object):
             train["seats"][seat]["booking_reference"] = booking_reference
         return self.data_for_train(train_id)
 
+    @cherrypy.tools.json_out()
     def reset(self, train_id):
         train = self.trains.get(train_id)
         for seat_id, seat in train["seats"].items():
