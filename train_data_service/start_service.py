@@ -1,7 +1,8 @@
 """
-Use this script to start the Train Data Service on port 8081
+Use this script to start the Train Data Service on port 8081.
 """
-using_flask = False
+
+from train_data_service import start
 
 def main(args):
     if args:
@@ -11,13 +12,8 @@ def main(args):
     with open(trains_data_file) as f:
         trains_data = f.read()
     
-    if using_flask:
-        from train_data_service_flask import start
-    else:
-        from train_data_service_cherrypy import start
     start(trains_data)
         
-
 if __name__ == '__main__':
         import sys
         help_text = """ 
