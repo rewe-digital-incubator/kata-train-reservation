@@ -1,19 +1,3 @@
-"""
-You can get a unique booking reference using this service. For test purposes, you can start a local service using this code. You can assume the real service will behave the same way, but be available on a different url.
-
-Install [Python 3.3](http://python.org) and [CherryPy](http://www.cherrypy.org/), then start the server by running:
-
-    python booking_reference_service.py
-
-You can use this service to get a unique booking reference. Make a GET request to:
-
-    http://localhost:8082/booking_reference
-
-This will return a string that looks a bit like this:
-
-	75bcd15
-"""
-
 import cherrypy
 import itertools
 
@@ -41,7 +25,7 @@ if __name__ == "__main__":
     help_text = """
 Use this program to start a booking reference service:
 
-    python {0}
+    python3 {0}
 
 The service will start on this url:
 
@@ -50,7 +34,7 @@ The service will start on this url:
 If you have to restart the service, you can continue counting from the
 previous reference by passing it on the command line:
 
-    python {0} 75bcd15
+    python3 {0} 75bcd15
     """.format(sys.argv[0])
     if "-help" in sys.argv or "--help" in sys.argv or "-h" in sys.argv:
         print(help_text)
