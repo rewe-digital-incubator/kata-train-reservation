@@ -3,6 +3,7 @@ Implementation of Train Data Service.
 """
 
 import json
+
 import cherrypy
 
 
@@ -27,7 +28,7 @@ class TrainDataService:
 
         train = self.trains.get(train_id)
         for seat in seats:
-            if not seat in train["seats"]:
+            if seat not in train["seats"]:
                 return "seat not found {0}".format(seat)
             existing_reservation = train["seats"][seat]["booking_reference"]
             if existing_reservation and existing_reservation != booking_reference:
