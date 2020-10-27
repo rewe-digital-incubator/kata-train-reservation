@@ -1,0 +1,12 @@
+version: "3"
+services:
+  train-data-service:
+    command: train_data_service
+    build: .
+    ports:
+      - 8081:8081
+  booking-reference-service:
+    command: booking_reference_service
+    build: .
+    ports:
+      - 8082:8082
