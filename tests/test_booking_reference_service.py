@@ -1,15 +1,29 @@
 # Use py.test to run this test
 
-from booking_reference_service import BookingReferenceService
+import cherrypy
+from cherrypy.test import helper
 
-def test_booking_number_looks_like_a_suitable_string():
-    service = BookingReferenceService(123456789)
-    booking_number = service.booking_reference()
-    assert len(booking_number) > 5
-    assert not booking_number.startswith("0x")
-    
-def test_booking_reference_is_unique():
-    service = BookingReferenceService(123456789)
-    booking_number1 = service.booking_reference()
-    booking_number2 = service.booking_reference()
-    assert not booking_number1 == booking_number2
+from train_reservation.booking_reference_service import BookingReferenceService
+
+
+class BookingReferenceServiceTest(helper.CPWebCase):
+    @staticmethod
+    def setup_server():
+        cherrypy.tree.mount(BookingReferenceService(123456789))
+
+    def test_booking_number_has_length_greater_than_five(self):
+        self.getPage('/booking_reference')
+        self.assertMatchesBody('^.{6,}$')
+
+    def test_booking_number_does_not_start_with_0x(self):
+        self.getPage('/booking_reference')
+        self.assertNotRegex(self.body.decode(), '^0x')
+
+    def test_booking_reference_is_unique(self):
+        self.getPage('/booking_reference')
+        booking_number_1 = self.body.decode()
+
+        self.getPage('/booking_reference')
+        booking_number_2 = self.body.decode()
+
+        self.assertNotEqual(booking_number_1, booking_number_2)
