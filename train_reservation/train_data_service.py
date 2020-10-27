@@ -44,7 +44,6 @@ class TrainDataService:
             seat["booking_reference"] = ""
         return self.data_for_train(train_id)
 
-
-def start(trains_data):
-    cherrypy.config.update({"server.socket_port": 8081})
-    cherrypy.quickstart(TrainDataService(trains_data))
+# def start(trains_data):
+#     cherrypy.config.update({"server.socket_port": 8081})
+#     cherrypy.quickstart(TrainDataService(trains_data))

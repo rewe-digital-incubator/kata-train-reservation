@@ -1,11 +1,9 @@
-""" Use py.test to run this test """
-
 import json
 
 import cherrypy
 from cherrypy.test import helper
 
-from train_data_service.train_data_service import TrainDataService
+from train_reservation.train_data_service import TrainDataService
 
 
 class TrainDataServiceTest(helper.CPWebCase):
