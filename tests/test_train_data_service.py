@@ -1,5 +1,3 @@
-""" Use py.test to run this test """
-
 import json
 
 import cherrypy

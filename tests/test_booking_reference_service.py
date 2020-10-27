@@ -1,5 +1,3 @@
-# Use py.test to run this test
-
 import cherrypy
 from cherrypy.test import helper
 
