@@ -5,7 +5,7 @@ import itertools
 class BookingReferenceService:
 
     def __init__(self, starting_point):
-        self.counter = itertools.count(starting_point)
+        self.counter = itertools.count(int(starting_point, 16) + 1)
 
     @cherrypy.expose()
     def booking_reference(self):
