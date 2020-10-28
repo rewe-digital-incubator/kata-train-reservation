@@ -17,7 +17,7 @@ def train_data_service(trains_data_filename, port):
 
 
 @click.command()
-@click.option('--starting-point', default='123456789', help='starting point reference')
+@click.option('--starting-point', default=123456789, help='starting point reference')
 @click.option('--port', default=8082, help='port')
 def booking_reference_service(starting_point, port):
     cherrypy.config.update({'server.socket_port': port, 'server.socket_host': '0.0.0.0'})
