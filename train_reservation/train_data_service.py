@@ -37,6 +37,7 @@ class TrainDataService:
             train["seats"][seat]["booking_reference"] = booking_reference
         return self.data_for_train(train_id)
 
+    @cherrypy.expose()
     @cherrypy.tools.json_out()
     def reset(self, train_id):
         train = self.trains.get(train_id)

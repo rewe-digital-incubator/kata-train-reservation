@@ -59,3 +59,40 @@ Note I've left out all the extraneous details about where the train is going to 
 
 The service has one additional method, that will remove all reservations on a particular train. Use it with care: <http://localhost:8081/reset/express_2000>.
 
+### Start Services
+Both services can be started by issuing the following command:
+```shell script
+docker-compose up
+```
+
+### Sample Clients
+Check for free seats on the train "express_2000":
+```shell script
+curl http://127.0.0.1:8081/data_for_train/express_2000
+```
+
+Book a seat:
+```shell script
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"train_id": "express_2000", "seats": ["1A"], "booking_reference": "01234567"}' \
+  http://127.0.0.1:8081/reserve
+```
+
+Reserve the seat again and it is not updated:
+```shell script
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"train_id": "express_2000", "seats": ["1A"], "booking_reference": "new_reference"}' \
+  http://127.0.0.1:8081/reserve
+```
+
+Remove all seat reservations for train express_2000:
+```shell script
+curl http://127.0.0.1:8081/reset/express_2000
+```
+
+Get a booking reference:
+```shell script
+curl http://127.0.0.1:8082/booking_reference
+```
