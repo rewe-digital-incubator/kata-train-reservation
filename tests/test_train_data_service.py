@@ -28,6 +28,10 @@ class EmptyTrainTest(TrainDataServiceTest):
         self.post('/reserve', json.dumps({'train_id': 'foo_train', 'seats': ['1A'], 'booking_reference': '01234567'}))
         self.assertInBody('"booking_reference": "01234567"')
 
+    def test_get_data_for_unknown_train_returns_404(self):
+        self.getPage('/data_for_train/bar_train')
+        self.assertStatus(404)
+
 
 class ReservedTrainTest(TrainDataServiceTest):
     @staticmethod
