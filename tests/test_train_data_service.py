@@ -24,13 +24,18 @@ class EmptyTrainTest(TrainDataServiceTest):
         self.getPage('/data_for_train/foo_train')
         self.assertInBody('1A')
 
+    def test_get_data_for_unknown_train_returns_404(self):
+        self.getPage('/data_for_train/bar_train')
+        self.assertStatus(404)
+
     def test_reserve_seat(self):
         self.post('/reserve', json.dumps({'train_id': 'foo_train', 'seats': ['1A'], 'booking_reference': '01234567'}))
         self.assertInBody('"booking_reference": "01234567"')
 
-    def test_get_data_for_unknown_train_returns_404(self):
-        self.getPage('/data_for_train/bar_train')
-        self.assertStatus(404)
+    def test_reserve_seat_with_unknown_train_returns_400(self):
+        self.post('/reserve', json.dumps({'train_id': 'bar_train', 'seats': ['1A'], 'booking_reference': '01234567'}))
+        self.assertStatus(400)
+        self.assertInBody('Train not found: bar_train.')
 
 
 class ReservedTrainTest(TrainDataServiceTest):
