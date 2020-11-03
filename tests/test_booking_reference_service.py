@@ -9,6 +9,10 @@ class BookingReferenceServiceTest(helper.CPWebCase):
     def setup_server():
         cherrypy.tree.mount(BookingReferenceService(123456789))
 
+    def test_get_booking_reference_returns_status_200(self):
+        self.getPage("/booking_reference")
+        self.assertStatus(200)
+
     def test_booking_number_has_length_greater_than_five(self):
         self.getPage("/booking_reference")
         self.assertMatchesBody("^.{6,}$")
