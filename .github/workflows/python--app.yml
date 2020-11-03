@@ -1,6 +1,6 @@
 name: Train Reservation Kata
 
-on: [ push, pull_request ]
+on: [ push ]
 
 jobs:
   build:

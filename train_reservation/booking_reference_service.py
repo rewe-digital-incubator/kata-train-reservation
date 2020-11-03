@@ -3,7 +3,6 @@ import itertools
 
 
 class BookingReferenceService:
-
     def __init__(self, starting_point):
         self.counter = itertools.count(int(str(starting_point), 16) + 1)
 
