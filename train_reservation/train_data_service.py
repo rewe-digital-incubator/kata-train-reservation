@@ -8,7 +8,6 @@ import cherrypy
 
 
 class TrainDataService:
-
     def __init__(self, json_data):
         self.trains = json.loads(json_data)
 
@@ -22,11 +21,11 @@ class TrainDataService:
     @cherrypy.tools.json_out()
     def reserve(self):
         reservation = cherrypy.request.json
-        train_id = reservation['train_id']
-        seats = reservation['seats']
-        booking_reference = reservation['booking_reference']
+        train_id = reservation["train_id"]
+        seats = reservation["seats"]
+        booking_reference = reservation["booking_reference"]
 
-        with cherrypy.HTTPError.handle(KeyError, 400, f'Train not found: {train_id}.'):
+        with cherrypy.HTTPError.handle(KeyError, 400, f"Train not found: {train_id}."):
             train = self.trains[train_id]
 
         for seat in seats:
