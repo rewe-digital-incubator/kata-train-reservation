@@ -37,9 +37,7 @@ class TrainDataService:
                 existing_booking_reference
                 and existing_booking_reference != booking_reference
             ):
-                return "already booked with reference: {0}".format(
-                    existing_booking_reference
-                )
+                return f"already booked with reference: {existing_booking_reference}"
 
         for seat in seats:
             train["seats"][seat]["booking_reference"] = booking_reference
