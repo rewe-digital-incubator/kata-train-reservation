@@ -42,6 +42,7 @@ class EmptyTrainTest(TrainDataServiceTest):
 
     def test_fetch_train_data(self):
         self.getPage("/data_for_train/foo_train")
+        self.assertStatus(200)
         self.assertInBody("1A")
 
     def test_get_data_for_unknown_train_returns_404(self):
@@ -59,6 +60,7 @@ class EmptyTrainTest(TrainDataServiceTest):
                 }
             ),
         )
+        self.assertStatus(200)
         self.assertInBody('"booking_reference": "01234567"')
 
     def test_reserve_seat_with_unknown_train_returns_400(self):
@@ -126,24 +128,14 @@ class ReservedTrainTest(TrainDataServiceTest):
                 }
             ),
         )
+        self.assertStatus(200)
         self.assertInBody("Already booked with reference: existing.")
 
         self.getPage("/data_for_train/foo_train")
+        self.assertStatus(200)
         self.assertInBody('"booking_reference": "existing"')
-
-    def test_reserve_with_typo_in_seat_id(self):
-        self.post(
-            "/reserve",
-            json.dumps(
-                {
-                    "train_id": "foo_train",
-                    "seats": ["typo"],
-                    "booking_reference": "01234567",
-                }
-            ),
-        )
-        self.assertInBody("Seat not found: typo.")
 
     def test_reset(self):
         self.getPage("/reset/foo_train")
+        self.assertStatus(200)
         self.assertNotInBody("existing")
