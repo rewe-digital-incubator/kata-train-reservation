@@ -33,13 +33,13 @@ class TrainDataService:
             with cherrypy.HTTPError.handle(KeyError, 400, f"Seat not found: {seat}."):
                 existing_booking_reference = train["seats"][seat]["booking_reference"]
 
-                if (
+            if (
+                existing_booking_reference
+                and existing_booking_reference != booking_reference
+            ):
+                return "already booked with reference: {0}".format(
                     existing_booking_reference
-                    and existing_booking_reference != booking_reference
-                ):
-                    return "already booked with reference: {0}".format(
-                        existing_booking_reference
-                    )
+                )
 
         for seat in seats:
             train["seats"][seat]["booking_reference"] = booking_reference
