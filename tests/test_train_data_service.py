@@ -89,6 +89,10 @@ class EmptyTrainTest(TrainDataServiceTest):
         self.assertStatus(400)
         self.assertInBody("Seat not found: 2A.")
 
+    def test_reset_with_unknown_train_returns_404(self):
+        self.getPage("/reset/bar_train")
+        self.assertStatus(404)
+
 
 class ReservedTrainTest(TrainDataServiceTest):
     @staticmethod

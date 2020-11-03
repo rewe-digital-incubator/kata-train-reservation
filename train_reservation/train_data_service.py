@@ -49,7 +49,10 @@ class TrainDataService:
     @cherrypy.expose()
     @cherrypy.tools.json_out()
     def reset(self, train_id):
-        train = self.trains.get(train_id)
-        for _, seat in train["seats"].items():
+        with cherrypy.HTTPError.handle(KeyError, 404):
+            train = self.trains[train_id]
+
+        for seat in train["seats"].values():
             seat["booking_reference"] = ""
+
         return self.data_for_train(train_id)
