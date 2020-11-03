@@ -1,6 +1,6 @@
 # Kata: Train Reservation
 
-This repository provides the description of the [Train Reservation Kata](https://github.com/emilybache/KataTrainReservation) from Emily Bache and setup code for the two upstream services "Booking Reservation Service" and "Train Data Service".
+This repository provides the description of the [Train Reservation Kata](https://github.com/emilybache/KataTrainReservation) from Emily Bache and setup code for the two upstream services "Booking Reference Service" and "Train Data Service".
 
 ## Kata Description
 
@@ -8,7 +8,7 @@ Origin: [Train Reservation Kata](https://github.com/emilybache/KataTrainReservat
 
 Railway operators aren't always known for their use of cutting edge technology, and in this case they're a little behind the times. The railway people want you to help them to improve their online booking service. They'd like to be able to not only sell tickets online, but to decide exactly which seats should be reserved, at the time of booking.
 
-You're working on the "Ticket Offic Servive", and your next task is to implement the feature for reserving seats on a particular train. The railway operator has a service-oriented architecture, and both the interface you'll need to fulfill, and two services you'll need to use - "Booking Reservation Service" and "Train Data Service" - are already implemented.
+You're working on the "Ticket Offic Servive", and your next task is to implement the feature for reserving seats on a particular train. The railway operator has a service-oriented architecture, and both the interface you'll need to fulfill, and two services you'll need to use - "Booking Reference Service" and "Train Data Service" - are already implemented.
 
 ### Business Rules around Reservations
 
@@ -16,7 +16,7 @@ There are various business rules and policies around which seats may be reserved
 
 ### The Guiding Test
 
-The Ticket Office service needs to respond to a HTTP POST request that comes with form data telling you which train the customer wants to reserve seats on, and how many they want. It should return a JSON document detailing the reservation that has been made. 
+The Ticket Office service needs to respond to a HTTP POST request that comes with a JSON body telling you which train the customer wants to reserve seats on, and how many they want. It should return a JSON document detailing the reservation that has been made. 
 
 A reservation comprises a JSON document with three fields, the train id, booking reference, and the ids of the seats that have been reserved. Example JSON:
 
