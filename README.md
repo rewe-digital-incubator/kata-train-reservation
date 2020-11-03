@@ -8,7 +8,7 @@ Origin: [Train Reservation Kata](https://github.com/emilybache/KataTrainReservat
 
 Railway operators aren't always known for their use of cutting edge technology, and in this case they're a little behind the times. The railway people want you to help them to improve their online booking service. They'd like to be able to not only sell tickets online, but to decide exactly which seats should be reserved, at the time of booking.
 
-You're working on the "Ticket Offic Servive", and your next task is to implement the feature for reserving seats on a particular train. The railway operator has a service-oriented architecture, and both the interface you'll need to fulfill, and two services you'll need to use - "Booking Reference Service" and "Train Data Service" - are already implemented.
+You're working on the "Ticket Office Service", and your next task is to implement the feature for reserving seats on a particular train. The railway operator has a service-oriented architecture, and both the interface you'll need to fulfill, and two services you'll need to use - "Booking Reference Service" and "Train Data Service" - are already implemented.
 
 ### Business Rules around Reservations
 
