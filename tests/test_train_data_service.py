@@ -75,6 +75,20 @@ class EmptyTrainTest(TrainDataServiceTest):
         self.assertStatus(400)
         self.assertInBody("Train not found: bar_train.")
 
+    def test_reserve_seat_with_unknown_seat_returns_400(self):
+        self.post(
+            "/reserve",
+            json.dumps(
+                {
+                    "train_id": "foo_train",
+                    "seats": ["2A"],
+                    "booking_reference": "01234567",
+                }
+            ),
+        )
+        self.assertStatus(400)
+        self.assertInBody("Seat not found: 2A.")
+
 
 class ReservedTrainTest(TrainDataServiceTest):
     @staticmethod
@@ -124,7 +138,7 @@ class ReservedTrainTest(TrainDataServiceTest):
                 }
             ),
         )
-        self.assertInBody("seat not found typo")
+        self.assertInBody("Seat not found: typo.")
 
     def test_reset(self):
         self.getPage("/reset/foo_train")

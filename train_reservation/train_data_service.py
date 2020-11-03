@@ -14,7 +14,8 @@ class TrainDataService:
     @cherrypy.expose()
     @cherrypy.tools.json_out()
     def data_for_train(self, train_id):
-        return self.get_train(train_id)
+        with cherrypy.HTTPError.handle(KeyError, 404):
+            return self.trains[train_id]
 
     @cherrypy.expose()
     @cherrypy.tools.json_in()
@@ -29,18 +30,21 @@ class TrainDataService:
             train = self.trains[train_id]
 
         for seat in seats:
-            if seat not in train["seats"]:
-                return "seat not found {0}".format(seat)
-            existing_reservation = train["seats"][seat]["booking_reference"]
-            if existing_reservation and existing_reservation != booking_reference:
-                return "already booked with reference: {0}".format(existing_reservation)
+            with cherrypy.HTTPError.handle(KeyError, 400, f"Seat not found: {seat}."):
+                existing_booking_reference = train["seats"][seat]["booking_reference"]
+
+                if (
+                    existing_booking_reference
+                    and existing_booking_reference != booking_reference
+                ):
+                    return "already booked with reference: {0}".format(
+                        existing_booking_reference
+                    )
+
         for seat in seats:
             train["seats"][seat]["booking_reference"] = booking_reference
-        return self.data_for_train(train_id)
 
-    def get_train(self, train_id):
-        with cherrypy.HTTPError.handle(KeyError, 404):
-            return self.trains[train_id]
+        return self.data_for_train(train_id)
 
     @cherrypy.expose()
     @cherrypy.tools.json_out()
