@@ -126,7 +126,7 @@ class ReservedTrainTest(TrainDataServiceTest):
                 }
             ),
         )
-        self.assertInBody("already booked with reference: existing")
+        self.assertInBody("Already booked with reference: existing.")
 
         self.getPage("/data_for_train/foo_train")
         self.assertInBody('"booking_reference": "existing"')
