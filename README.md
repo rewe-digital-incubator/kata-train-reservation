@@ -113,6 +113,12 @@ Activate the virtual environment:
 source env/bin/activate
 ```
 
+Upgrade pip:
+
+```shell script
+pip install --upgrade pip
+```
+
 Install required packages:
 
 ```shell script
