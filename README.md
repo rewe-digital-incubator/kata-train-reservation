@@ -4,9 +4,9 @@ This repository provides the description of the [Train Reservation Kata](https:/
 
 ## Table of contents
 
-1. [Kata Description](#katadescription)
-2. [Run Upstream Services for Local Development using Docker](#runupstreamservicesforlocaldevelopmentusingdocker)
-3. [Run Upstream Services for Local Development using Python](#runupstreamservicesforlocaldevelopmentusingpython)
+1. [Kata Description](#kata-description)
+2. [Run Upstream Services for Local Development using Docker](#run-upstream-services-for-local-development-using-docker)
+3. [Run Upstream Services for Local Development using Python](#run-upstream-services-for-local-development-using-python)
 
 ## Kata Description
 
