@@ -94,4 +94,45 @@ curl http://127.0.0.1:8082/booking_reference
 
 ## Run Upstream Services for Local Development using Python
 
-**TBD**
+Clone the GitHub repository:
+
+```shell script
+git clone https://github.com/rewe-digital-incubator/kata-train-reservation.git
+cd kata-train-reservation
+```
+
+Create a new virtual environment inside the directory:
+
+```shell script
+python3 -m venv env
+```
+
+Activate the virtual environment:
+
+```shell script
+source env/bin/activate
+```
+
+Install required packages:
+
+```shell script
+pip install -r requirements.txt
+```
+
+Install the project:
+
+```shell script
+pip install .
+```
+
+Start the `train_data_service` on port 8081 with trains.json to initialize the bookable trains:
+
+```shell script
+train_data_service --port 8081 trains.json
+```
+
+Start the `booking_reference_service` on port 8082 with the default starting point:
+
+```shell script
+booking_reference_service --port 8082
+```
