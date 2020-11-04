@@ -2,6 +2,12 @@
 
 This repository provides the description of the [Train Reservation Kata](https://github.com/emilybache/KataTrainReservation) from Emily Bache and setup code for the two upstream services "Booking Reference Service" and "Train Data Service".
 
+## Table of contents
+
+1. [Kata Description](#katadescription)
+2. [Run Upstream Services for Local Development using Docker](#runupstreamservicesforlocaldevelopmentusingdocker)
+3. [Run Upstream Services for Local Development using Python](#runupstreamservicesforlocaldevelopmentusingpython)
+
 ## Kata Description
 
 Origin: [Train Reservation Kata](https://github.com/emilybache/KataTrainReservation) from Emily Bache
