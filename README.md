@@ -22,7 +22,7 @@ There are various business rules and policies around which seats may be reserved
 
 ### The Guiding Test
 
-The Ticket Office service needs to respond to a HTTP POST request that comes with a JSON body telling you which train the customer wants to reserve seats on, and how many they want. It should return a JSON document detailing the reservation that has been made. 
+The ticket office service needs to respond to a HTTP POST request that comes with a JSON body telling you which train the customer wants to reserve seats on, and how many they want. It should return a JSON document detailing the reservation that has been made. 
 
 A reservation comprises a JSON document with three fields, the train id, booking reference, and the ids of the seats that have been reserved. Example JSON:
 
