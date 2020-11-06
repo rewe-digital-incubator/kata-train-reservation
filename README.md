@@ -58,7 +58,9 @@ Both services can be started using [Docker](https://www.docker.com/) and [Docker
 docker-compose up
 ```
 
-This command will build two docker images, start two docker container and expose the train data service on port `8081` and the booking reference service on port `8082`.
+Use the command line option `--build` to make sure the most recent version of the code is used.
+
+This command will probably build two docker images, start two docker container and expose the train data service on port `8081` and the booking reference service on port `8082`.
 
 ### Sample Clients
 
