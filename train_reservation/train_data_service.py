@@ -37,7 +37,12 @@ class TrainDataService:
                 existing_booking_reference
                 and existing_booking_reference != booking_reference
             ):
-                return f"Already booked with reference: {existing_booking_reference}."
+                cherrypy.response.headers["Content-Type"] = "application/problem+json"
+                cherrypy.response.status = 409
+                return {
+                    "title": f"Already booked with reference: {existing_booking_reference}.",
+                    "status": 409,
+                }
 
         for seat in seats:
             train["seats"][seat]["booking_reference"] = booking_reference
