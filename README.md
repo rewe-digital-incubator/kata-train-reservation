@@ -55,7 +55,7 @@ This repository includes simple implementations of the two upsteam services that
 Both services can be started using [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) by issuing the following command:
 
 ```shell script
-docker-compose up
+docker compose up
 ```
 
 Use the command line option `--build` to make sure the most recent version of the code is used.
@@ -112,19 +112,13 @@ cd kata-train-reservation
 Create a new virtual environment inside the directory:
 
 ```shell script
-python3 -m venv env
+python3 -m venv venv  --upgrade-deps
 ```
 
 Activate the virtual environment:
 
 ```shell script
-source env/bin/activate
-```
-
-Upgrade pip:
-
-```shell script
-pip install --upgrade pip
+source venv/bin/activate
 ```
 
 Install required packages:
@@ -137,6 +131,12 @@ Install the project:
 
 ```shell script
 pip install .
+```
+
+Execute tests:
+
+```shell script
+pytest tests
 ```
 
 Start the `train_data_service` on port 8081 with trains.json to initialize the bookable trains:
